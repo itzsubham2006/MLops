@@ -1,0 +1,7 @@
+flask
+fastapi
+numpy
+pandas
+seaborn
+tensorflow
+langchain
