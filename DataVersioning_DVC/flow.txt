@@ -19,3 +19,7 @@
 9. Now do "dvc commit" and then "dvc push"
 
 10. Now again do git add-commit-push to mark this stage as first version of data.
+
+11. Now write a new code to code.py to add more rows and column to the data and check using "dvc status"
+
+12. Now do "dvc commit-push" to add new version of data and it will give new id corresponds to new data. And changes will be saved to s3.

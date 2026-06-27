@@ -2,9 +2,9 @@ import pandas as pd
 import os
 
 data = {
-    'Name' : ['Subham', 'Nikesh', 'Jitul'],
-    'age' : [19, 19, 21],
-    'City' : ['Rowta', 'Thelamara', 'Basugaon']
+    'Name' : ['Subham', 'Nikesh', 'Jitul', 'Subhra', 'Denkhw'],
+    'age' : [19, 19, 21, 20, 20],
+    'City' : ['Rowta', 'Thelamara', 'Basugaon', 'Basugaon', 'Bongaigaon']
 }
 
 df = pd.DataFrame(data)
@@ -17,4 +17,6 @@ filepath = os.path.join(dir, 'sample_data.csv')
 
 df.to_csv(filepath, index=False)
 
+
+print(df)
 print(f"File saved successfully to {filepath}")
