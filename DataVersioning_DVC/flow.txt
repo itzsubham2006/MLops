@@ -15,3 +15,7 @@
     because initially we were tracking data from git now we are tracking from dvc.
 
 8. Again we do "dvc add data/"
+
+9. Now do "dvc commit" and then "dvc push"
+
+10. Now again do git add-commit-push to mark this stage as first version of data.
