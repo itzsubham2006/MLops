@@ -28,3 +28,6 @@
 
 14. Now repeat 11, 12 step to add new data.
 
+-----------------------------------------------------
+
+Now if you want to rollback to old version of data then ---> copy those commits and "git checkout <hash>" and "dvc pull" 
