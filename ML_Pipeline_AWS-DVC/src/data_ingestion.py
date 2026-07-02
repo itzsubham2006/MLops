@@ -95,7 +95,7 @@ def save_data(train_data : pd.DataFrame, test_data : pd.DataFrame, data_path : s
 def main():
     
     try:
-        test_size = 0.2
+        test_size = 0.25
         data_path = 'https://raw.githubusercontent.com/vikashishere/Datasets/refs/heads/main/spam.csv'
         df = load(data_url=data_path)
         final_df = preprocess_data(df)
