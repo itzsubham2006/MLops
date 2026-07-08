@@ -64,6 +64,6 @@ with mlflow.start_run():
         
         )
     
-    mlflow.sklearn.log_model(model, "Random-Forest-model")
+    mlflow.sklearn.load_model(model, "Random-Forest-model")
     
     print(accuracy)

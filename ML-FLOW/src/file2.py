@@ -8,10 +8,13 @@ import numpy as np
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
+import dagshub
 
-# Mention your experiment below
 
-mlflow.set_tracking_uri("http://127.0.0.1:5000")
+dagshub.init(repo_owner='itzsubham2006', repo_name='MLops', mlflow=True)
+
+mlflow.set_tracking_uri('https://dagshub.com/itzsubham2006/MLops.mlflow')
+
 
 wine = load_wine()
 

@@ -3,3 +3,6 @@ fastapi
 numpy
 pandas
 seaborn
+matplotlib
+scikit-learn
+mlflow

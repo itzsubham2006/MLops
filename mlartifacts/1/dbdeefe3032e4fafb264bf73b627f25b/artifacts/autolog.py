@@ -25,7 +25,7 @@ x_train, x_test, y_train, y_test = train_test_split(x, y, random_state=2, test_s
 max_depth = 10
 n_estimators = 8
  
-
+mlflow.autolog()
 mlflow.set_experiment('MLops-Exp1')
 
 with mlflow.start_run():
@@ -40,13 +40,8 @@ with mlflow.start_run():
     accuracy = accuracy_score(y_test, y_pred)
     confusion = confusion_matrix(y_test, y_pred)
    
-    mlflow.log_metric('accuracy', accuracy)
-    # mlflow.log_metric('confusion', confusion)
-    
-
-    mlflow.log_param('max_depth', max_depth)
-    mlflow.log_param('n_estimators', n_estimators)
-    
+   
+  
     plt.figure(figsize=(6,6))
     sns.heatmap(confusion, annot=True, fmt='d', cmap='Blues', xticklabels=wine.target_names, yticklabels=wine.target_names)
     plt.ylabel('Actual -->')
@@ -55,7 +50,7 @@ with mlflow.start_run():
 
     plt.savefig('Confusion_matrix.png')
 
-    mlflow.log_artifact("Confusion_matrix.png")
+   
     mlflow.log_artifact(__file__)
     
     mlflow.set_tags(
