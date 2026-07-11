@@ -125,6 +125,6 @@ dmypy.json
 cython_debug/
 
 *.csv
-*.txt
+
 
 dvclive

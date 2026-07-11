@@ -1,0 +1,94 @@
+Building Pipeline:
+
+1> Create a Github repo and clone it in local(add experiment).
+2> Add src folder along with all the components (run them individually).
+3> Add data/models/reports directories to .gitignore file.
+4> Now git add-commit-push.
+
+
+
+Setting up dvc Pipeline (without params)
+
+5> Create dvc.yaml file and add stages to it. 
+6> "dvc init" and "dvc repro" to test the Pipeline automation.
+7> Now git add-commit-push.     (Use "dvc dag" to see the full Pipeline)
+
+
+
+Setting up dvc Pipeline (with params)
+
+8> add params.yaml file 
+9> Add the parameters setup (mentioned below.)
+10> Do "dvc repro" again to test the Pipeline.
+11> git add-commit-push.
+
+
+Experiment with DVC :   
+
+12> pip install dvclive
+13> Add the dvclive code block (mentioned below)
+14> DO "dvc exp run", it will create a new dvc.yaml file (if not created) and dvclive directory (each run will be considered as an experiment)
+15> Do "dvc exp show" on terminal to see the experiment or use extension on vscode (install dvc extension).
+16> Do "dvc exp remove [exp-name]" to remove exp (optional) "dvc exp apply [exp-name]" to reproduce previous exp.
+17> Change params, re-run code (produce new experiment).
+18> Now git add, commit, push.
+
+
+-------------------------YAML-SETUP-------------------
+
+write this function above all the function--->
+
+def load_params(params_path: str) -> dict:
+    """Load parameters from a yaml file"""
+    
+    try:
+        with open(params_path, 'r') as file:
+            params = yaml.safe_load(file)
+        
+        logger.debug('Please waitt...Yaml file is loading...')
+        return params
+    
+    except FileNotFoundError:
+        logger.error('Error!!...File not found')
+        
+    except yaml.YAMLError as e:
+        logger.error('YAML error %s', e)
+        raise
+    
+    except Exception as e:
+        logger.error('Unexpected error.. %s', e)
+        raise
+        
+
+add to main() -->
+
+# for test_size -->
+
+params = load_params(params_path = 'params.yaml')
+test_size = params['data_ingestion']['test_size']
+
+# for feature_engineering -->
+
+
+params = load_params(params_path='params.yaml')
+max_features = params['feature_engineering']['max_features']
+
+
+
+-----------------------------------------------------------
+
+
+dvclive code block
+1> import dvclive and yaml
+    from dvclive import Live
+    import yaml
+
+2> Add the load_params function and initialize "params" var in main
+3> Add below code blocks into main.
+
+with live(save_dvc_exp=True) as live:
+    live.log_metric('Accuracy', accuracy_score(y_test, x_test))
+    live.log_metric('precision', precision_score(y_test, x_test))
+    live.log_metric('recall', recall_score(y_test, x_test))
+
+    live.log_params(params)
